@@ -1,0 +1,77 @@
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f8f8;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #quote-container {
+    margin: 0 auto;
+    height: 20rem;
+    width: 50rem;
+    text-align: center;
+    max-width: 600px;
+  }
+  .new-quote-btn {
+    margin-top: 14rem;
+    height: 4rem;
+    width: 10rem;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+  }
+</style>
+
+<script>
+  let options = {
+    method: "GET",
+    headers: { "x-api-key": "S+y3CuHCR2Ag1ELZfrNuqA==mcBlFsgq9DJoFbhh" },
+  };
+  const API_URL = "https://api.api-ninjas.com/v1/quotes";
+  const quoteContainer = document.querySelector("quote");
+  const newQuoteBtn = document.querySelector(".new-quote-btn");
+
+  newQuoteBtn.addEventListener("click", getQuote);
+
+  async function getQuote() {
+    try {
+      const response = await fetch(API_URL, options);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {}
+  }
+
+  getQuote();
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random quotes generator</title>
+    <!-- <link rel="stylesheet" href="fetch.css" /> -->
+  </head>
+  <body>
+    <div id="quote-container">
+      <h2>Random Quote Generator</h2>
+      <blockquote id="quote" class="quote">
+        <p id="quote"></p>
+        <cite></cite>
+      </blockquote>
+      <button id="new-quote-btn" class="new-quote-btn">New Quote</button>
+    </div>
+    <!-- <script src="fetch.js"></scr> -->
+  </body>
+</html>
